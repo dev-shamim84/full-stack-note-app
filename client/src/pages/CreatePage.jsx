@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router";
 import { ArrowLeftIcon } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import axios from "axios";
+import api from "../lib/axios";
 
 const CreateNotePage = () => {
   const [title, setTitle] = useState("");
@@ -11,12 +11,12 @@ const CreateNotePage = () => {
   const navigate = useNavigate();
   const handleCreate = async (e) => {
     e.preventDefault();
-    if (!title.trim() || !content.trim()) {
-      return toast.error("All fields are required");
-    }
+    // if (!title.trim() || !content.trim()) {
+    //   return toast.error("All fields are required");
+    // }
     setLoading(true);
     try {
-      await axios.post("http://localhost:3000/api/v1/createNote", {
+      await api.post("/createNote", {
         title,
         content,
       });
@@ -24,7 +24,13 @@ const CreateNotePage = () => {
       navigate("/");
     } catch (error) {
       console.log("Error creating note", error);
-      toast.error("Failed to create note");
+      if (error.response?.status === 429) {
+        toast.error("Slow down ! You're creating note fast", {
+          duration: 400,
+        });
+      } else {
+        toast.error("Failed to create note");
+      }
     } finally {
       setLoading(false);
     }
