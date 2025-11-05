@@ -5,18 +5,14 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import Root from "./layout/Root.jsx";
 import Home from "./pages/Home.jsx";
 import CreatePage from "./pages/CreatePage.jsx";
-import { Toaster } from "react-hot-toast";
 import DetailPage from "./pages/DetailPage.jsx";
-
+import { Toaster } from "react-hot-toast";
+import NotesNotFound from "./components/NotesNotFound .jsx";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
-    errorElement: (
-      <h1 className="h-screen mx-auto text-4xl text-center my-50">
-        404 Not Found !
-      </h1>
-    ),
+    errorElement: <NotesNotFound></NotesNotFound>,
     children: [
       {
         path: "/",
@@ -27,7 +23,7 @@ const router = createBrowserRouter([
         element: <CreatePage></CreatePage>,
       },
       {
-        path: "/noteDetails/:id",
+        path: "/note/:id",
         element: <DetailPage></DetailPage>,
       },
     ],

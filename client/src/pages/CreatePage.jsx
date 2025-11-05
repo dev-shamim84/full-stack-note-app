@@ -38,15 +38,18 @@ const CreateNotePage = () => {
   return (
     <div className="min-h-screen to-[#0f172a] text-white flex items-center justify-center px-4">
       <div className="w-full max-w-2xl">
-        <Link to={"/"} className="mb-6">
-          <span className=" flex items-center gap-2 text-xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#00FF9D] to-[#00C8FF]">
-            <ArrowLeftIcon className="size-5 text-black" /> Back to Notes
-          </span>
-        </Link>
         <div className="relative rounded-2xl overflow-hidden shadow-2xl backdrop-blur-md bg-white/10 border border-white/10">
-          <div className="absolute top-0 left-0 w-full h-[4px] bg-gradient-to-r from-[#00FF9D] to-[#00C8FF]" />
+          <idv className="absolute top-0 left-0 w-full h-[4px] bg-gradient-to-r from-[#00FF9D] to-[#00C8FF]" />
 
           <div className="p-8">
+            <Link
+              to="/"
+              className="mb-4 flex items-center gap-2 w-fit md:px-6 py-2 rounded-lg bg-gradient-to-r from-[#00FF9D] to-[#00C8FF] text-gray-900 font-semibold hover:opacity-90 transition"
+            >
+              <ArrowLeftIcon className="size-5" />
+              Back to Notes
+            </Link>
+
             <h2 className="text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#00FF9D] to-[#00C8FF]">
               Create New Note
             </h2>

@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import NoteCard from "../components/NoteCard";
 import api from "../lib/axios";
 import NotesNotFound from "../components/NotesNotFound ";
+import { LoaderIcon } from "lucide-react";
 
 const Home = () => {
   const [isRateLimited, setIsRatelimited] = useState(false);
@@ -27,18 +28,19 @@ const Home = () => {
     fetchNotes();
   }, []);
 
-  if (loading)
+  if (loading) {
     return (
-      <div className="flex items-center justify-center w-full mt-50">
-        <p className="text-xl text-primary font-semibold">Loading....</p>
+      <div className="min-h-screen bg-base-200 flex items-center justify-center">
+        <LoaderIcon className="animate-spin size-10" />
       </div>
     );
+  }
   return (
     <div className="h-screen">
       <div className="container mx-auto px-4">
         {isRateLimited && <RateLimitedUi />}
 
-        {note.length === 0 && !isRateLimited && <NotesNotFound />}
+        {notes.length === 0 && !isRateLimited && <NotesNotFound />}
 
         {notes.length > 0 && !isRateLimited && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-24">

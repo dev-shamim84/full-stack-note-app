@@ -18,7 +18,7 @@ const NoteCard = ({ note, setNotes }) => {
     }
   };
   return (
-    <Link to={`/noteDetails/${note._id}`}>
+    <Link to={`/note/${note._id}`}>
       <div
         className="relative flex flex-col h-full bg-base-200 rounded-lg overflow-hidden 
         hover:shadow-lg transition-all duration-200"
