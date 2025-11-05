@@ -3,6 +3,7 @@ import RateLimitedUi from "../components/RateLimitedUi";
 import toast from "react-hot-toast";
 import NoteCard from "../components/NoteCard";
 import api from "../lib/axios";
+import NotesNotFound from "../components/NotesNotFound ";
 
 const Home = () => {
   const [isRateLimited, setIsRatelimited] = useState(false);
@@ -36,10 +37,13 @@ const Home = () => {
     <div className="h-screen">
       <div className="container mx-auto px-4">
         {isRateLimited && <RateLimitedUi />}
+
+        {note.length === 0 && !isRateLimited && <NotesNotFound />}
+
         {notes.length > 0 && !isRateLimited && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-24">
             {notes.map((note) => (
-              <NoteCard key={note._id} note={note} />
+              <NoteCard key={note._id} note={note} setNotes={setNotes} />
             ))}
           </div>
         )}
